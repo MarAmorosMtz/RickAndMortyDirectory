@@ -1,0 +1,25 @@
+.contact-me {
+  background-color: #1f1f1f; 
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.95rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.contact-me a {
+  color: #6c63ff; 
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.contact-me a:hover {
+  color: #9b8fff;
+  text-decoration: underline;
+}
