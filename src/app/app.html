@@ -1,6 +1,42 @@
 <div class="title">
   <h1>Rick & Morty Directory</h1>
+ <input
+    type="text"
+    placeholder="Filter by name"
+    [value]="search()"
+    (input)="search.set($event.target.value)"
+    class="filter-input"
+  >
+
+   <div class="filters">
+    <span></span>
+    <button *ngFor="let cat of filterCategories"
+            (click)="selectedCategory.set(cat.value)"
+            [class.active]="selectedCategory() === cat.value">
+      {{ cat.label }}
+    </button>
+
+    <div class="dropdown">
+      <button class="dropbtn">
+        {{ selectedSeason() || 'Seasons' }}
+      </button>
+      <div class="dropdown-content">
+        <a *ngFor="let season of seasons"
+          (click)="setSeason(season)">
+          {{ season }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination-controls">
+      <button (click)="firstPage()" [disabled]="p() === 1" class="pagination-button">First</button>
+      <button (click)="prevPage()" [disabled]="p() === 1" class="pagination-button">◀</button>
+      <span>Page {{p()}} of {{results.value().info.pages}}</span>
+      <button (click)="nextPage()" [disabled]="!results.value().info.next" class="pagination-button">▶</button>
+  </div>
 </div>
+
 <main>
   @if (results.isLoading()) {
     <div class="loading">Cargando personajes...</div>
@@ -12,7 +48,7 @@
 
   @if (results.value()) {
     <div class="characters-grid">
-      <div *ngFor="let character of results.value().results; trackBy: trackById"
+      <div *ngFor="let character of filteredResults; trackBy: trackById"
            class="character-card">
 
         <img [src]="character.image" [alt]="character.name" class="character-image">
@@ -26,12 +62,6 @@
           <p><strong>Location:</strong> {{ character.location.name }}</p>
         </div>
       </div>
-    </div>
-
-    <div class="pagination-controls">
-      <button (click)="prevPage()" [disabled]="p() === 1" class="pagination-button">◀</button>
-      <span>Page {{p()}} of {{results.value().info.pages}}</span>
-      <button (click)="nextPage()" [disabled]="!results.value().info.next" class="pagination-button">▶</button>
     </div>
   }
 </main>
