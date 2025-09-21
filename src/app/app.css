@@ -1,3 +1,7 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -26,12 +30,13 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #333;
 }
 
 .character-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
 
 .character-image {
@@ -41,21 +46,77 @@
 }
 
 .character-info {
-  padding: 16px;
+  padding: 12px;
+  color: #fff;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .character-info h3 {
-  margin: 0 0 12px 0;
-  color: #333;
-  font-size: 18px;
+  margin: 0 0 15px 0;
+  font-size: 20px;
 }
 
 .character-info p {
   margin: 6px 0;
-  font-size: 14px;
-  color: #666;
+  font-size: 15px;
+  color: #b5b5b5;
 }
 
 .character-info strong {
-  color: #333;
+  color: #fff;
+  font-weight: bold;
+}
+
+.title {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: #1f1f1f;
+  color: #fff;
+  text-align: center;
+  font-size: larger;
+  padding: 15px 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(104, 104, 104, 0.43);
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 30px 0;
+  padding: 12px 20px;
+  background-color: #1f1f1f;
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-size: 1.1rem;
+  user-select: none;
+}
+
+.pagination-button {
+  background-color: #4b4b4b;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background-color: #6c63ff;
+  transform: scale(1.1);
+}
+
+.pagination-button:disabled {
+  background-color: #2a2a2a;
+  color: #888;
+}
+
+.pagination-controls span {
+  font-weight: 500;
+  color: #fff;
 }

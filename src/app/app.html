@@ -1,4 +1,6 @@
-<h1>Rick & Morty Directory</h1>
+<div class="title">
+  <h1>Rick & Morty Directory</h1>
+</div>
 <main>
   @if (results.isLoading()) {
     <div class="loading">Cargando personajes...</div>
@@ -16,19 +18,20 @@
         <img [src]="character.image" [alt]="character.name" class="character-image">
         <div class="character-info">
           <h3>{{ character.name }}</h3>
-          <p><strong>Estado:</strong> {{ character.status }}</p>
-          <p><strong>Especie:</strong> {{ character.species }}</p>
-          <p><strong>Género:</strong> {{ character.gender }}</p>
-          <p><strong>Origen:</strong> {{ character.origin.name }}</p>
-          <p><strong>Ubicación:</strong> {{ character.location.name }}</p>
+          <p><strong>Status:</strong> {{ character.status }}</p>
+          <p><strong>Specie:</strong> {{ character.species }}</p>
+          <p><strong>Type:</strong>   {{character.type || 'Unknown'}}</p>
+          <p><strong>Gender:</strong> {{ character.gender }}</p>
+          <p><strong>Origin:</strong> {{ character.origin.name }}</p>
+          <p><strong>Location:</strong> {{ character.location.name }}</p>
         </div>
       </div>
     </div>
 
     <div class="pagination-controls">
-      <button (click)="prevPage()" [disabled]="p() === 1">Prev</button>
-      <span>Página {{p()}} de {{results.value().info.pages}}</span>
-      <button (click)="nextPage()" [disabled]="!results.value().info.next">Next</button>
+      <button (click)="prevPage()" [disabled]="p() === 1" class="pagination-button">◀</button>
+      <span>Page {{p()}} of {{results.value().info.pages}}</span>
+      <button (click)="nextPage()" [disabled]="!results.value().info.next" class="pagination-button">▶</button>
     </div>
   }
 </main>
