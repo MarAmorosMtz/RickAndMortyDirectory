@@ -1,4 +1,4 @@
-import { Component, resource, signal } from '@angular/core';
+import { Component, resource, signal, effect } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -65,6 +65,22 @@ export class App {
 
   constructor() {
     this.loadEpisodes();
+
+    const savedSearch = localStorage.getItem('search');
+    const savedCategory = localStorage.getItem('selectedCategory');
+    const savedSeason = localStorage.getItem('selectedSeason');
+    const savedPage = localStorage.getItem('page');
+
+    if (savedSearch) this.search.set(savedSearch);
+    if (savedCategory) this.selectedCategory.set(savedCategory);
+    if (savedSeason) this.selectedSeason.set(savedSeason);
+    if (savedPage) this.p.set(Number(savedPage));
+
+
+    effect(() => localStorage.setItem('search', this.search()));
+    effect(() => localStorage.setItem('selectedCategory', this.selectedCategory()));
+    effect(() => localStorage.setItem('selectedSeason', this.selectedSeason()));
+    effect(() => localStorage.setItem('page', this.p().toString()));
   }
 
   async loadEpisodes() {
